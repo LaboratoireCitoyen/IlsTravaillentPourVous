@@ -22,11 +22,10 @@ BOWER_INSTALLED_APPS = (
     'less',
 )
 
+
 def project_directory(*join):
     return os.path.realpath(
         os.path.join(BASE_DIR, *join).replace('\\', '/'))
-
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
