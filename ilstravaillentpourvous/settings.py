@@ -123,10 +123,11 @@ DATABASES = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sc',
-        'USER': 'sc',
-        'PASSWORD': 'sc',
+        'ENGINE': os.environ.get('DB_ENGINE',
+                                 'django.db.backends.postgresql_psycopg2'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
     }
 }
 
@@ -148,3 +149,8 @@ TEMPLATE_DIRS = (project_directory('templates'),)
 FIXTURE_DIRS = (project_directory('fixtures'),)
 BOWER_COMPONENTS_ROOT = project_directory('bower')
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
