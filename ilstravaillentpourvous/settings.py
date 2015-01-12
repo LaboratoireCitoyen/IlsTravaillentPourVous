@@ -90,6 +90,13 @@ INSTALLED_APPS = (
     'votes',
 )
 
+try:
+    import raven
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS += ('raven.contrib.django.raven_compat',)
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
