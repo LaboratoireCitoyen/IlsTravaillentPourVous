@@ -146,6 +146,6 @@ BOWER_COMPONENTS_ROOT = project_directory('bower')
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 try:
-    from .local_settings import *
+    from local_settings import *
 except ImportError:
     pass
