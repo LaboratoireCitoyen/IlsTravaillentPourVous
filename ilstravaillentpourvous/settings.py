@@ -46,6 +46,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'foundation/css/normalize.css',
             'foundation/css/foundation.css',
+            'autocomplete_light/style.css',
         ),
         'output_filename': 'css/style.css',
         'extra_context': {
@@ -57,6 +58,11 @@ PIPELINE_CSS = {
 PIPELINE_JS = {
     'script': {
         'source_filenames': (
+            'autocomplete_light/autocomplete.js',
+            'autocomplete_light/widget.js',
+            'autocomplete_light/addanother.js',
+            'autocomplete_light/text_widget.js',
+            'autocomplete_light/remote.js',
             'respond/dest/respond.src.js',
             'modernizr/modernizr.js',
             'html5shiv/dist/html5shiv.js',
@@ -76,6 +82,7 @@ INSTALLED_APPS = (
 
     'djangobower',
     'pipeline',
+    'autocomplete_light',
 
     'deputes',
     'dossiers',

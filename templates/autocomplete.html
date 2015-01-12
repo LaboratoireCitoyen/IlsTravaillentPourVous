@@ -1,0 +1,7 @@
+{% if deputes|length %}
+    {% for depute in deputes %}
+        <a class="choice" href="{{ depute.get_absolute_url }}" title="{{ depute }}">{{ depute }}</a>
+    {% endfor %}
+{% else %}
+    Nous ne connaissons pas ce député.
+{% endif %}

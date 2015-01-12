@@ -3,3 +3,4 @@ django-bower
 django-pipeline
 django-autoslug
 unidecode
+django-autocomplete-light

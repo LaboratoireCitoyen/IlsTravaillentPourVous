@@ -9,6 +9,32 @@
         {% stylesheet 'style' %}
     </head>
     <body>
+        <nav class="top-bar" data-topbar role="navigation"> 
+            <ul class="title-area"> 
+                <li class="name"> 
+                    <h1><a href="http://ilstravaillentpourvous.fr">IlsTravaillentPourVous</a></h1> 
+                </li> 
+                <li class="toggle-topbar menu-icon">
+                    <a href="#"><span>Menu</span></a>
+                </li>
+            </ul> 
+            <section class="top-bar-section"> 
+                <ul class="right">
+                    <li class="has-form"> 
+                        <div class="row collapse"> 
+                            <div class="large-8 small-9 columns"> 
+                                <input id="autocomplete" type="text" placeholder="Find Stuff">
+                            </div> 
+                            <div class="large-4 small-3 columns"> 
+                                <a href="#" class="alert button expand">Search</a> 
+                            </div> 
+                        </div> 
+                    </li>
+                </ul> 
+            </section> 
+        </nav>
+
+        {% block body %}
         <div class="row">
             <h1>IlsTravaillentPourVous.fr</h1>
             <p>
@@ -23,7 +49,6 @@
             </p>
         </div>
 
-        {% block body %}
         <div class="row">
             <ul>
                 {% for depute in depute_list %}
@@ -36,12 +61,20 @@
         {% endblock %}
 
         <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+        {% include 'autocomplete_light/_ajax_csrf.html' %}
         {% javascript 'script' %}
 
         <script>
             $(document).foundation();
             var doc = document.documentElement;
             doc.setAttribute('data-useragent', navigator.userAgent);
+
+            $('#autocomplete').yourlabsAutocomplete({
+                url: '{% url 'autocomplete' %}',
+                choiceSelector: '.choice',
+            }).input.bind('selectChoice', function(e, choice, autocomplete) {
+                window.location.href = choice.attr('href');
+            });
         </script>
     </body>
 </html>
