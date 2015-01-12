@@ -1,6 +1,5 @@
 scrapy
 django-bower
-django-compressor
 django-pipeline
 django-autoslug
 unidecode
