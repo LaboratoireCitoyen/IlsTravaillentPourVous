@@ -1,0 +1,47 @@
+{% load pipeline %}
+{% load static from staticfiles %}
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="fr" > <![endif]-->
+<html class="no-js" lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        {% stylesheet 'style' %}
+    </head>
+    <body>
+        <div class="row">
+            <h1>IlsTravaillentPourVous.fr</h1>
+            <p>
+                Ce site vous permet de consulter la liste des votes des
+                députés, vous permettant ainsi d'orienter votre vote vers des
+                députés qui vous représentent vraiment.
+            </p>
+            <p>
+                Ce site est en béta, à vrai dire je l'ai mis en place dans la
+                nuit. De nombreuses fonctionnalités seront mises à votre
+                disposition au fur et à mesure.
+            </p>
+        </div>
+
+        {% block body %}
+        <div class="row">
+            <ul>
+                {% for depute in depute_list %}
+                <li>
+                    <a href="{{ depute.get_absolute_url }}" title="{{ depute }}">{{ depute }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endblock %}
+
+        <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+        {% javascript 'script' %}
+
+        <script>
+            $(document).foundation();
+            var doc = document.documentElement;
+            doc.setAttribute('data-useragent', navigator.userAgent);
+        </script>
+    </body>
+</html>
