@@ -11,10 +11,10 @@
         <tr>
             <td>{{ vote.date }}</td>
             <td>
-                <a href="{{ vote.scrutin.dossier.source_url }}">{{ vote.scrutin.dossier }}</a>
+                <a href="{{ vote.scrutin.dossier.url }}">{{ vote.scrutin.dossier }}</a>
             </td>
             <td>
-                <a href="{{ vote.scrutin.source_url }}">{{ vote.scrutin.objet }}</a>
+                <a href="{{ vote.scrutin.url }}">{{ vote.scrutin.objet }}</a>
             </td>
             <td>{{ vote.get_division_display }}</td>
         </tr>
