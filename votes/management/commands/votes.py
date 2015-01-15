@@ -1,5 +1,7 @@
 import re
 
+from optparse import make_option
+
 import ijson.backends.yajl2 as ijson
 
 from django.core.management.base import BaseCommand, CommandError
@@ -17,7 +19,17 @@ class Command(BaseCommand):
         'Abstention': Vote.DIVISION_ABSTENTION,
     }
 
+    option_list = BaseCommand.option_list + (
+        make_option('--insert',
+            action='store_true',
+            dest='insert',
+            default=False,
+            help='Insert all votes - for quicker install'),
+        )
+
     def handle(self, *args, **options):
+        self.insert = options['insert']
+
         self.deputes = {}
         for depute in Depute.objects.values_list('nom', 'prenom', 'pk'):
             self.deputes[depute[0]+depute[1]] = depute[2]
@@ -46,18 +58,28 @@ class Command(BaseCommand):
                     except KeyError:
                         pass
 
+                    if not self.insert:
+                        continue
+
                     if len(votes) > 20000:
                         Vote.objects.bulk_create(votes)
                         votes = []
                         print 'flushing'
 
-        Vote.objects.bulk_create(votes)
+        if self.insert:
+            Vote.objects.bulk_create(votes)
 
     def get_vote(self, item):
         kwargs = dict(depute_id=self.get_depute_id(item),
                       scrutin_id=self.get_scrutin_id(item['scrutin_uri']))
 
-        vote = Vote(**kwargs)
+        if self.insert:
+            vote = Vote(**kwargs)
+        else:
+            try:
+                vote = Vote.objects.get(**kwargs)
+            except Vote.DoesNotExist:
+                vote = Vote(**kwargs)
 
         vote.groupe_id = self.get_groupe_id(item['groupe'])
         vote.division = self.DIVISIONS[item['division']]
