@@ -80,6 +80,12 @@ class Command(BaseCommand):
                 vote = Vote.objects.get(**kwargs)
             except Vote.DoesNotExist:
                 vote = Vote(**kwargs)
+            except Vote.MultipleObjectsReturned:
+                duplicates = Vote.objects.filter(**kwargs)
+                Vote.objects.filter(
+                    pk__in=duplicates.values_list('pk', flat=True)[1:]
+                ).delete()
+                vote = Vote(**kwargs)
 
         vote.groupe_id = self.get_groupe_id(item['groupe'])
         vote.division = self.DIVISIONS[item['division']]
