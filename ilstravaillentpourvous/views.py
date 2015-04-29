@@ -1,7 +1,7 @@
 from django.views import generic
 from django.db.models import Q
 
-from deputes.models import Depute
+from francedata.deputes.models import Depute
 
 
 class HomeView(generic.TemplateView):

@@ -83,11 +83,11 @@ INSTALLED_APPS = (
     'pipeline',
     'autocomplete_light',
 
-    'deputes',
-    'dossiers',
-    'groupes',
-    'scrutins',
-    'votes',
+    'francedata.deputes',
+    'francedata.dossiers',
+    'francedata.groupes',
+    'francedata.scrutins',
+    'francedata.votes',
 )
 
 try:

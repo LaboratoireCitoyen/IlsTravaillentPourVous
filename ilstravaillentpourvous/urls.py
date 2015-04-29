@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^autocomplete/$', AutocompleteView.as_view(),
         name='autocomplete'),
 
-    url(r'^deputes/', include('deputes.urls')),
+    url(r'^deputes/', include('francedata.deputes.urls')),
 
     url(r'^pirate/', include(admin.site.urls)),
 )
