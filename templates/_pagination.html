@@ -1,0 +1,29 @@
+{% load i18n %}
+
+<div class="pagination-centered">
+    <ul class="pagination" role="menubar" aria-label="Pagination">
+        {% if page_obj.has_previous %}
+            <li class="arrow"><a href="?{{ page_obj.previous_page_number.querystring }}">&laquo; Previous</a></li>
+        {% else %}
+            <li class="arrow unavailable" aria-disabled="true"><a>&laquo; Previous</a></li>
+        {% endif %}
+
+        {% for page in page_obj.pages %}
+            {% if page %}
+                {% ifequal page page_obj.number %}
+                    <li class="current"><a>{{ page }}</a></li>
+                {% else %}
+                    <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                {% endifequal %}
+            {% else %}
+                <li class="unavailable" aria-disabled="true"><a>&hellip;</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="arrow"><a href="?{{ page_obj.next_page_number.querystring }}">Next &raquo;</a></li>
+        {% else %}
+            <li class="arrow unavailable" aria-disabled="true"><a>Next &raquo;</a></li>
+        {% endif %}
+    </ul>
+</div>
