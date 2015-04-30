@@ -50,21 +50,23 @@
                 députés, vous permettant ainsi d'orienter votre vote vers des
                 députés qui vous représentent vraiment.
             </p>
+            <h2>Circonscriptions législatives françaises</h2>
             <p>
-                Ce site est en béta, à vrai dire je l'ai mis en place dans la
-                nuit. De nombreuses fonctionnalités seront mises à votre
-                disposition au fur et à mesure.
+                Les <a href="http://fr.wikipedia.org/wiki/Circonscriptions_l%C3%A9gislatives_fran%C3%A7aises">circonscriptions législatives françaises</a> sont des divisions de territoire dans lesquelles sont élus les députés de l'<a href="http://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)">Assemblée nationale</a>.
             </p>
-        </div>
-
-        <div class="row">
-            <ul>
-                {% for depute in depute_list %}
-                <li>
-                    <a href="{{ depute.get_absolute_url }}" title="{{ depute }}">{{ depute }}</a>
-                </li>
-                {% endfor %}
-            </ul>
+            <h2>Recherche de député sur carte des circonscription</h2>
+            <p>
+                Le site de l'Assemblée nationnale propose un <a href="http://www.assemblee-nationale.fr/14/qui/circonscriptions/index.asp">système de recherche de député par carte de circonscription</a>.
+            </p>
+            <h2>Recherche de député</h2>
+            <p>
+                Vous pouvez recherche un député sur ce site pour consulter tous
+                ses votes par nom grâce au formulaire de recherche situé au
+                Nord-Est de la page.
+            </p>
+            <h2>Logiciel libre</h2>
+            <p>Parce que la technologie citoyenne est inestimable: tout est sur <a href="https://github.com/SocieteCitoyenne">GitHub pour SocieteCitoyenne</a>.
+            </p>
         </div>
         {% endblock %}
 
