@@ -10,6 +10,7 @@ urlpatterns = patterns('',
         name='autocomplete'),
 
     url(r'^deputes/', include('francedata.deputes.urls')),
+    url(r'^votes/', include('francedata.votes.urls')),
 
     url(r'^pirate/', include(admin.site.urls)),
 )

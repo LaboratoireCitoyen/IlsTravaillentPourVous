@@ -82,7 +82,9 @@ INSTALLED_APPS = (
     'djangobower',
     'pipeline',
     'autocomplete_light',
+    'pure_pagination',
 
+    'francedata',
     'francedata.deputes',
     'francedata.dossiers',
     'francedata.groupes',
